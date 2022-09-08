@@ -2,6 +2,8 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
+GENERIC_IMAGE = "https://png.pngtree.com/png-clipart/20191025/ourlarge/pngtree-no-pet-forbidden-sign-png-image_1866786.jpg"
+
 db = SQLAlchemy()
 
 def connect_db(app):
@@ -25,3 +27,8 @@ class Pet(db.Model):
     age = db.Column(db.Integer)
     notes = db.Column(db.Text)
     available = db.Column(db.Boolean, nullable=False, default=True)
+
+    def image_url(self):
+        """Return image for pet -- bespoke or generic."""
+
+        return self.photo_url or GENERIC_IMAGE

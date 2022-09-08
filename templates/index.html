@@ -10,10 +10,8 @@
   {% for pet in pets %}
   <div class="col-sm-4">
     <h3 class="title">{{ pet.name }}</h3>
-    <p><a class="btn btn-sm btn-secondary" href="/{{ pet.id }}">Add new pet</a></p>
-    {% if pet.photo_url %}
-    <img src="{{ pet.photo_url }}" alt="{{ pet.name }}" class="img-fluid">
-    {% endif %}
+    <p><a class="btn btn-sm btn-secondary" href="/{{ pet.id }}">View/edit pet</a></p>
+    <img src="{{ pet.image_url() }}" alt="{{ pet.name }}" class="img-thumbnail">
     {% if pet.available %}
     <p>{{ pet.name }} is <b>available!</b></p>
     {% endif %}
