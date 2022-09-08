@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ pet.name }}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ pet.name }}</h1>
+<div class="row">
+  <ul>
+    <li>species: {{ pet.species }}</li>
+    <li>age: {% if pet.age %}{{ pet.age }}{% endif %}</li>
+  </ul>
+  {% if pet.photo_url %}
+  <img src="{{ pet.photo_url }}" alt="{{ pet.name }}" class="img-fluid">
+  {% endif %}
+</div>
+
+
+<form id="pet-edit-form" method="POST">
+  {% for field in form %}
+
+  <p>
+    {{ field.label }}
+    {{ field }}
+
+    {% for error in field.errors %}
+    {{ error }}
+    {% endfor %}
+  </p>
+
+  {% endfor %}
+
+  <button type="submit">Submit</button>
+</form>
+
+<p><a class="btn btn-sm btn-secondary" href="/">Go back to homepage</a></p>
+
+{% endblock %}
